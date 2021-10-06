@@ -1,0 +1,42 @@
+= Optician
+Moritz Eichhorn
+1.0.0, 2021-10-06
+ifndef::imagesdir[:imagesdir: images]
+//:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+
+//Need this blank line after ifdef, don't know why...
+ifdef::backend-html5[]
+
+// print the toc here (not at the default position)
+//toc::
+
+This project represents an opticians business.
+The optician sells products (glasses, lenses, ...).
+Every customer is stored and every invoice belongs to 1 customer.
+He can add new products to his inventory. He can also analyze his sales
+(See Use-Case-Diagram 3. for more information).
+
+== Class-Diagram
+[plantuml, cld, png, align=left]
+----
+include::plantuml/cld.puml[]
+----
+
+== Use-Case-Diagram
+[plantuml, ucd, png, align=left]
+----
+include::plantuml/ucd.puml[]
+----
+
+1. As an employee I want to be able to register new customers.
+2. As a customer I want to be able to buy products.
+3. As an employee I want to be able to get a statistic over a given period,
+which shows how many different customers we had, how many products
+were sold during this period and how much the products cost on
+average.
+4. As an employee I want to be able to add new products to the inventory.
+

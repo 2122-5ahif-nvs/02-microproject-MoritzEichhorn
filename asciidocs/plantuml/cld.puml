@@ -1,0 +1,38 @@
+@startuml
+left to right direction
+Class Customer {
+    id: Long
+    name: String
+    street: String
+    zipCode: int
+    city: String
+    birthday: LocalDate
+}
+
+Class Product {
+    id: Long
+    eanCode: Long
+    name: String
+    description: String
+    price: double
+    quantity: int
+}
+
+Class InvoiceItem {
+    id: Long
+    invoice: Invoice
+    product: Product
+    quantity: int
+    totalPrice: double
+}
+
+Class Invoice {
+    id: Long
+    purchaseDate: LocalDateTime
+    customer: Customer
+}
+
+Invoice "*" --> "1" Customer : buys <
+Product "1" <-- "*" InvoiceItem : is bought >
+InvoiceItem "*" --> "1" Invoice : is part of >
+@enduml
