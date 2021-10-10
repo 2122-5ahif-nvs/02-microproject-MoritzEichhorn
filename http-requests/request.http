@@ -1,0 +1,83 @@
+POST http://localhost:8080/api/customers
+Content-Type: application/json
+
+{
+  "name": "Moritz",
+  "birthday": "2002-10-18",
+  "zipCode": 4203,
+  "city": "Altenberg",
+  "street": "Langlus 11a"
+}
+
+###
+
+GET http://localhost:8080/api/customers
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/customers/1
+Accept: application/json
+
+###
+
+PUT http://localhost:8080/api/customers/1
+Content-Type: application/json
+
+{
+  "name": "Moritz Brille",
+  "birthday": "2002-10-20",
+  "zipCode": 4203,
+  "city": "Altenberg bei Linz",
+  "street": "Langlus 11"
+}
+
+###
+
+DELETE http://localhost:8080/api/customers/1
+
+###
+
+GET http://localhost:8080/api/invoices/statistics?s=2019-12-12T20:11:53.917745&e=2021-12-14T20:11:53.917745
+
+###
+
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+[
+  {
+    "eanCode": "5901234123457",
+    "name": "Contact lenses",
+    "description": "6*2",
+    "price": 20.1,
+    "quantity":10
+  },
+  {
+    "eanCode": "4960999667454",
+    "name": "Brillenputztuch",
+    "description": "In blau und rot erhältlich",
+    "price": 10,
+    "quantity":50
+  }
+]
+
+###
+
+POST http://localhost:8080/api/products/buy
+Content-Type: application/json
+
+{
+  "customerId": 1,
+  "products": [
+    {
+      "quantity": 1,
+      "id": "1"
+    },
+    {
+      "quantity": 2,
+      "id": "2"
+    }
+  ]
+}
+
