@@ -15,7 +15,7 @@ Class Product {
     name: String
     description: String
     price: double
-    quantity: int
+    qtyInStock: int
 }
 
 Class InvoiceItem {
@@ -34,5 +34,5 @@ Class Invoice {
 
 Invoice "*" --> "1" Customer : buys <
 Product "1" <-- "*" InvoiceItem : is bought >
-InvoiceItem "*" --> "1" Invoice : is part of >
+InvoiceItem "*" -- "1" Invoice : is part of >
 @enduml
