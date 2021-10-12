@@ -6,6 +6,12 @@ Every customer is stored and every invoice belongs to 1 customer.
 He can add new products to his inventory. He can also analyze his sales 
 (See Use-Case-Diagram 3. for more information).
 
+## API Documentation
+
+When you run the application, you can find the documentation of the api here
+
+<http://localhost:8080/api/q/swagger-ui>
+
 ## Class-Diagram
 
 ![Class Diagram](asciidocs/images/cld.png)
@@ -22,3 +28,34 @@ He can add new products to his inventory. He can also analyze his sales
    were sold during this period and how much the products cost on
    average.
 4. As an employee I want to be able to add new products to the inventory.
+
+
+## Tests
+
+I created tests for all entities, repositories and endpoints.
+Regarding testing in karate I tested one endpoint in this project (InvoiceResourceTest) and I tested our SYP project "beeyond".
+
+## Running the application
+
+First you'll need to start the database. You can do this executing
+the shell-script *start-db.sh* (docker needs to be installed on your machine to execute this command):
+
+
+```shell script
+./start-db.sh
+```
+
+You can run your application using:
+
+```shell script
+./mvnw clean quarkus:dev
+```
+
+## Testing
+
+You can test your application by running the tests in your IDE or by executing
+following command:
+
+```shell script
+./mvnw test
+```
