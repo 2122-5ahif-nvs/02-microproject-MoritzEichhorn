@@ -1,5 +1,6 @@
 package at.htl.optician.boundary;
 
+import at.htl.optician.boundary.dtos.ProductDto;
 import at.htl.optician.controller.CustomerRepository;
 import at.htl.optician.controller.InvoiceItemRepository;
 import at.htl.optician.controller.InvoiceRepository;
@@ -9,6 +10,11 @@ import at.htl.optician.entity.Invoice;
 import at.htl.optician.entity.InvoiceItem;
 import at.htl.optician.entity.Product;
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.media.SchemaProperty;
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.logging.Logger;
 
@@ -19,15 +25,14 @@ import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.core.*;
-
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static org.jboss.logging.Logger.Level.ERROR;
-import static org.jboss.logging.Logger.Level.INFO;
 
 @Path("products")
 @Tag(name = "Product")
@@ -72,9 +77,16 @@ public class ProductResource {
     @Path("buy")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Transactional
-    public Response buyProduct(JsonObject jsonBuy) {
+    public Response buyProduct(
+            @RequestBody(content = {
+                    @Content(schema = @Schema(
+                            properties = {
+                                    @SchemaProperty(name = "customerId", implementation = long.class),
+                                    @SchemaProperty(name = "products", type = SchemaType.ARRAY,
+                                            implementation = ProductDto.class)
+                            }))}) JsonObject jsonBuy) {
         Customer buyer = customerRepository.findById((long) jsonBuy.getInt("customerId"));
-        if(buyer == null) {
+        if (buyer == null) {
             return Response.status(Response.Status.BAD_REQUEST.getStatusCode(), "Customer not found").build();
         }
         JsonArray jsonProducts = jsonBuy.getJsonArray("products");
