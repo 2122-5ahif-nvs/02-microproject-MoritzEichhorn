@@ -33,7 +33,7 @@ When you run the application, you can find the documentation of the api here
 ## Tests
 
 I created tests for all entities, repositories and endpoints.
-Regarding testing in karate I tested one endpoint in this project (InvoiceResourceTest) and I tested our SYP project "beeyond".
+Regarding testing in karate I tested one endpoint in this project (InvoiceResourceTest).
 
 ## Running the application
 
