@@ -1,5 +1,7 @@
 package at.htl.optician.entity;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -8,14 +10,20 @@ import java.util.Objects;
 
 @Entity
 @XmlRootElement
+@Schema(description = "A customer who can buy products")
 public class Customer {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Schema(required = true)
     private String name;
     private LocalDate birthday;
     @Column(name = "zip_code")
+    @Schema(required = true)
     private int zipCode;
+    @Schema(required = true)
     private String city;
+    @Schema(required = true)
     private String street;
 
     public Customer(Long id, String name, LocalDate birthday, int zipCode, String city, String street) {
