@@ -37,12 +37,11 @@ Regarding testing in karate I tested one endpoint in this project (InvoiceResour
 
 ## Running the application
 
-First you'll need to start the database. You can do this executing
-the shell-script *start-db.sh* (docker needs to be installed on your machine to execute this command):
+First you'll need to start the database. You can do this by starting the docker-compose:
 
 
 ```shell script
-./start-db.sh
+docker-compose up -d
 ```
 
 You can run your application using:
