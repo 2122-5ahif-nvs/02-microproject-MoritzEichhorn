@@ -6,6 +6,12 @@ Every customer is stored and every invoice belongs to 1 customer.
 He can add new products to his inventory. He can also analyze his sales 
 (See Use-Case-Diagram 3. for more information).
 
+## Web sockets
+If you go to http://localhost:8080/api/ you can "log in" (just enter some name and press `connect`).
+After that you can order some Products (we only have products that have `glasses` or `contacts` in their name).
+After that the order is being processed (program waits 0 - 5 seconds). Then you will get
+an answer, either that your product is ready, or that we do not own that product.
+
 ## API Documentation
 
 When you run the application, you can find the documentation of the api here

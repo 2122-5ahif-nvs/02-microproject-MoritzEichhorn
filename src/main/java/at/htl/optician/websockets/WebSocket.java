@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
-@ServerEndpoint("/api/")
+@ServerEndpoint("/api/{username}")
 public class WebSocket {
     Map<String, Session> sessions = new ConcurrentHashMap<>();
     Random random;
