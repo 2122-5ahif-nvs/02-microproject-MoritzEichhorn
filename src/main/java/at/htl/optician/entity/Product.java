@@ -16,18 +16,18 @@ public class Product {
     private String name;
     private String description;
     private double price;
-    private int quantity;
+    private int qtyInStock;
 
     public Product() {
     }
 
-    public Product(Long id, Long eanCode, String name, String description, double price, int quantity) {
+    public Product(Long id, Long eanCode, String name, String description, double price, int qtyInStock) {
         this.id = id;
         setEanCode(eanCode);
         this.name = name;
         this.description = description;
         setPrice(price);
-        setQuantity(quantity);
+        setQuantity(qtyInStock);
     }
 
     public Long getId() {
@@ -82,12 +82,12 @@ public class Product {
     }
 
     public int getQuantity() {
-        return quantity;
+        return qtyInStock;
     }
 
     public void setQuantity(int quantity) {
         if(quantity > 0) {
-            this.quantity = quantity;
+            this.qtyInStock = quantity;
         }
     }
 
@@ -118,7 +118,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return eanCode + " " + name + " " + description + " " + price + " " + quantity;
+        return eanCode + " " + name + " " + description + " " + price + " " + qtyInStock;
     }
 
     @Override
@@ -126,11 +126,11 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Double.compare(product.price, price) == 0 && quantity == product.quantity && Objects.equals(eanCode, product.eanCode) && Objects.equals(name, product.name) && Objects.equals(description, product.description);
+        return Double.compare(product.price, price) == 0 && qtyInStock == product.qtyInStock && Objects.equals(eanCode, product.eanCode) && Objects.equals(name, product.name) && Objects.equals(description, product.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eanCode, name, description, price, quantity);
+        return Objects.hash(eanCode, name, description, price, qtyInStock);
     }
 }

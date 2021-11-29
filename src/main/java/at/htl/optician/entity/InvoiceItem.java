@@ -16,18 +16,18 @@ public class InvoiceItem {
     @ManyToOne
     private Invoice invoice;
 
-    private int qtyInStock;
+    private int quantity;
 
     private double totalPrice;
 
     public InvoiceItem() {
     }
 
-    public InvoiceItem(Invoice invoice, Product product, int qtyInStock) {
+    public InvoiceItem(Invoice invoice, Product product, int quantity) {
         this.invoice = invoice;
         this.product = product;
-        this.qtyInStock = qtyInStock;
-        this.totalPrice = product.getPrice() * qtyInStock;
+        this.quantity = quantity;
+        this.totalPrice = product.getPrice() * quantity;
     }
 
     public Long getId() {
@@ -56,20 +56,20 @@ public class InvoiceItem {
 
     public void setProduct(Product product) {
         this.product = product;
-        this.totalPrice = this.qtyInStock * product.getPrice();
+        this.totalPrice = this.quantity * product.getPrice();
     }
 
-    public int getQtyInStock() {
-        return qtyInStock;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQtyInStock(int qtyInStock) {
-        this.qtyInStock = qtyInStock;
-        this.totalPrice = this.qtyInStock * this.product.getPrice();
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+        this.totalPrice = this.quantity * this.product.getPrice();
     }
 
     @Override
     public String toString() {
-        return product.getId() + " " + product.getEanCode() + " " + qtyInStock;
+        return product.getId() + " " + product.getEanCode() + " " + quantity;
     }
 }

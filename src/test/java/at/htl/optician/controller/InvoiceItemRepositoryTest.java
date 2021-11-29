@@ -111,7 +111,7 @@ public class InvoiceItemRepositoryTest {
                 .findFirst();
 
         assertThat(item).isPresent();
-        item.ifPresent(InvoiceItem -> assertThat(InvoiceItem.getQtyInStock()).isEqualTo(3));
+        item.ifPresent(InvoiceItem -> assertThat(InvoiceItem.getQuantity()).isEqualTo(3));
 
         assertThat(invoiceItemRepository.listAll().size()).isEqualTo(3);
     }

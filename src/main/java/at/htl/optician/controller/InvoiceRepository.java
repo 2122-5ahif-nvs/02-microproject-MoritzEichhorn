@@ -28,7 +28,7 @@ public class InvoiceRepository implements PanacheRepository<Invoice> {
     CustomerRepository customerRepository;
 
     public String getInvoiceStatistics(LocalDateTime start, LocalDateTime end) {
-        Object[] results = em.createQuery("select count(distinct ii.invoice.customer), sum(ii.qtyInStock), sum(ii.totalPrice) / sum(ii.qtyInStock)  from InvoiceItem ii " +
+        Object[] results = em.createQuery("select count(distinct ii.invoice.customer), sum(ii.quantity), sum(ii.totalPrice) / sum(ii.quantity)  from InvoiceItem ii " +
                 "where ii.invoice.purchaseDateTime between :start and :end", Object[].class)
                 .setParameter("start", start)
                 .setParameter("end", end)
