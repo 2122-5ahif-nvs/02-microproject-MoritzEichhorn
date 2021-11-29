@@ -1,6 +1,7 @@
 package at.htl.optician.boundary;
 
 import at.htl.optician.boundary.dtos.ProductDto;
+import at.htl.optician.boundary.dtos.ProductInfoDto;
 import at.htl.optician.controller.CustomerRepository;
 import at.htl.optician.controller.InvoiceItemRepository;
 import at.htl.optician.controller.InvoiceRepository;
@@ -124,14 +125,15 @@ public class ProductResource {
     )
     @GET
     @Path("{id}")
-    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Response getProduct(@PathParam("id") Long id) {
         Product p = productRepository.findById(id);
         if(p == null) {
             return Response.status(404).build();
         }
-        return Response.ok(p).build();
+        return Response
+                .ok(new ProductInfoDto(p.getEanCode(), p.getName(), p.getDescription(), p.getPrice(), p.getQuantity()))
+                .build();
     }
 }
