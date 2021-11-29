@@ -8,7 +8,9 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class InvoiceItemRepository implements PanacheRepository<InvoiceItem> {
@@ -53,5 +55,10 @@ public class InvoiceItemRepository implements PanacheRepository<InvoiceItem> {
     @Transactional
     public void reset() {
         em.createQuery("delete from InvoiceItem").executeUpdate();
+    }
+
+
+    public List<InvoiceItem> getByCustomer(Long id) {
+        return find("invoice.customer.id", id).stream().collect(Collectors.toList());
     }
 }
