@@ -1,6 +1,7 @@
 package at.htl.optician.boundary;
 
 import at.htl.optician.boundary.dtos.ProductDto;
+import at.htl.optician.boundary.dtos.ProductInfoDto;
 import at.htl.optician.controller.CustomerRepository;
 import at.htl.optician.controller.InvoiceItemRepository;
 import at.htl.optician.controller.InvoiceRepository;
@@ -22,9 +23,7 @@ import javax.inject.Inject;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
@@ -119,5 +118,22 @@ public class ProductResource {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
         return Response.created(URI.create("/api/invoices/" + invoiceId)).build();
+    }
+
+    @Operation(
+            summary = "Get the information of one product"
+    )
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response getProduct(@PathParam("id") Long id) {
+        Product p = productRepository.findById(id);
+        if(p == null) {
+            return Response.status(404).build();
+        }
+        return Response
+                .ok(new ProductInfoDto(p.getEanCode(), p.getName(), p.getDescription(), p.getPrice(), p.getQuantity()))
+                .build();
     }
 }
