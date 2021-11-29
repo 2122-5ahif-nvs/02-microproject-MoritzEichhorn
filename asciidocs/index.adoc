@@ -80,6 +80,23 @@ And now the pull request is closed and the changes are in the master branch.
 
 ====
 
+== Feature branches
+=== get-product-information
+Implemented feature: You can get the full information of a product (price, quantityInStock, eanCode, ...)
+here: `GET /api/products/{id}`
+
+=== add-purchase-history
+Implemented feature: Endpoint, where you can see all the purchases (product name, total price, quantity, purchase date)
+made by a customer:
+`GET /api/customers/getHistory/{id}`
+
+== Web sockets
+If you go to http://localhost:8080/api/ you can "log in" (just enter some name and press `connect`).
+After that you can order some Products (we only have products that have `glasses` or `contacts` in their name).
+After that the order is being processed (program waits 0 - 5 seconds).Then you will get
+an answer, either that your product is ready, or that we do not own that product.
+
+
 == API Documentation
 
 When you run the application, you can find the documentation of the api here
@@ -105,7 +122,6 @@ which shows how many different customers we had, how many products
 were sold during this period and how much the products cost on
 average.
 4. As an employee I want to be able to add new products to the inventory.
-
 
 == Tests
 
