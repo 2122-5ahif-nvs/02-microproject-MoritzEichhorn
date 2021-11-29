@@ -1,0 +1,13 @@
+@startuml
+left to right direction
+rectangle optician {
+    usecase "register new customer" as register
+    usecase "buy product" as buy
+    usecase "get customer statistic" as statistic
+    usecase "add new products to inventory" as newProducts
+}
+Customer -- buy
+Employee -- register
+Employee -- statistic
+Employee -- newProducts
+@enduml
