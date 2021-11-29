@@ -22,9 +22,7 @@ import javax.inject.Inject;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
@@ -119,5 +117,21 @@ public class ProductResource {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
         return Response.created(URI.create("/api/invoices/" + invoiceId)).build();
+    }
+
+    @Operation(
+            summary = "Get the information of one product"
+    )
+    @GET
+    @Path("{id}")
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Transactional
+    public Response getProduct(@PathParam("id") Long id) {
+        Product p = productRepository.findById(id);
+        if(p == null) {
+            return Response.status(404).build();
+        }
+        return Response.ok(p).build();
     }
 }
