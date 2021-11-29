@@ -1,0 +1,30 @@
+name: Optician Deployment
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 16
+        uses: actions/setup-java@v1
+        with:
+          java-version: 16
+      - name: Build
+        run: ./mvnw clean package -Dquarkus.package.type=uber-jar -B -DskipTests
+      - name: install ssh key
+        uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.ORAVM }}
+      - name: create .ssh/known_hosts
+        run: |
+          ssh-keyscan -H -t rsa -v ${{ secrets.HOST_IP }}  >> ~/.ssh/known_hosts
+      - name: copy binaries to oravm
+        run: |
+          scp target/eichhorn-optician-1.0-SNAPSHOT-runner.jar ubuntu@${{ secrets.HOST_IP }}:
+          scp docker-compose.yml ubuntu@${{ secrets.HOST_IP }}:
