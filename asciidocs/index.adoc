@@ -1,6 +1,6 @@
 = Optician
 Moritz Eichhorn
-1.0.0, 2021-10-06
+1.1.0, 2021-11-29
 ifndef::imagesdir[:imagesdir: images]
 //:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
 :sourcedir: ../src/main/java
@@ -19,6 +19,66 @@ The optician sells products (glasses, lenses, ...).
 Every customer is stored and every invoice belongs to 1 customer.
 He can add new products to his inventory.He can also analyze his sales
 (See Use-Case-Diagram 3. for more information).
+
+== Github Pull Request documentation
+=== Create PR
+[%collapsible]
+====
+To open a pull request, just open github and go to the `Pull requests` tab and
+press `New pull request`.
+
+image::pr_1.png[]
+
+After that select the correct branch you want to merge and then press
+`Create pull request`
+
+image::pr_2.png[]
+
+Now you can add a comment. Usually you sum up everything you have done.
+Then press `Create pull request`. Now the pull request is open and your team members can start
+reviewing it.
+
+image::pr_3.png[]
+
+====
+
+
+=== Review PR
+
+[%collapsible]
+====
+
+They can either approve it or add some comments.
+
+image::pr_4.png[]
+
+It's also possible to add comments directly in the code. Just press
+the `+` to the left of the line and add a comment.
+
+image::pr_5.png[]
+
+If the reviewers requested any changes, you should either discuss the
+problem with them or just fix them if you agree with the suggestions.
+
+image::pr_6.png[]
+
+After that, the reviewers again can either request some more changes
+or approve it (Select `Approve`).
+
+image::pr_7.png[]
+
+====
+
+=== Merge PR
+[%collapsible]
+====
+After that you can merge the PR in the `Pull requests/Conversation` tab.
+
+image::pr_8.png[]
+
+And now the pull request is closed and the changes are in the master branch.
+
+====
 
 == API Documentation
 
